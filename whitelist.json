@@ -1,16 +1,1 @@
-{
-  "users": [
-    {
-      "Name": "en_reaper",
-      "ID": "429458093265649686",
-      "Key": "RWtJBs6GopUx3veY",
-      "IP": "182.232.243.192"
-    },
-    {
-      "Name": "rak",
-      "ID": "916966432493953065",
-      "Key": "6jSBpjn1w2ZnehSL",
-      "IP": "182.232.243.192"
-    }
-  ]
-}
+{"users":[{"Name":"en_reaper","ID":"429458093265649686","Key":"RWtJBs6GopUx3veY","IP":"182.232.243.192"}]}
