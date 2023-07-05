@@ -1,1 +1,14 @@
-{"users":[{"Name":"zxcv124s","ID":"885029685870874644","Key":"YqO8ArSWdHZmCSlI"}]}
+{
+  "users": [
+    {
+      "Name": "zxcv124s",
+      "ID": "885029685870874644",
+      "Key": "YqO8ArSWdHZmCSlI"
+    },
+    {
+      "Name": "en_reaper",
+      "ID": "429458093265649686",
+      "Key": "JGTIeUfqklkBo7Tw"
+    }
+  ]
+}
