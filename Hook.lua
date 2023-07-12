@@ -1,4 +1,4 @@
-local webhookUrl = "https://discord.com/api/webhooks/1125306596193472544/ckXWBIPv8KCHYDfeNYHaJMcgQfngsnsVMQphrr5EPwsHJF5hjSewxlJfjD_i9_cK2yL8"
+local webhookUrl = ""
 
 -- เรียกใช้งานฟังก์ชันเพื่อส่ง Webhook
 local function sendWebhook(content)
