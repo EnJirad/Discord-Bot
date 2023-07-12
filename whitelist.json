@@ -1,13 +1,13 @@
 {
     "users": [
         {
-            "Name": "example1",
-            "ID": "123456789",
+            "Name": "",
+            "ID": "",
             "Key": "abc123"
         },
         {
-            "Name": "example2",
-            "ID": "987654321",
+            "Name": "",
+            "ID": "",
             "Key": "xyz789"
         }
     ]
