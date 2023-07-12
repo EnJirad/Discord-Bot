@@ -1,1 +1,14 @@
-{"users":[{"Name":"zxcv124s","ID":"885029685870874644","Key":"wTg1uicJv8DTptR3"}]}
+{
+    "users": [
+        {
+            "Name": "example1",
+            "ID": "123456789",
+            "Key": "abc123"
+        },
+        {
+            "Name": "example2",
+            "ID": "987654321",
+            "Key": "xyz789"
+        }
+    ]
+}
