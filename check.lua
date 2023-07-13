@@ -24,6 +24,7 @@ local function CheckID(ID)
     return false
 end
 
+
 local function HUB()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/MainXhub.lua"))()
 end
