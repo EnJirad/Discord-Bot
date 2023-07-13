@@ -26,7 +26,7 @@ end
 
 
 local function HUB()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/MainXhub.lua"))()
 end
 
 if CheckKey(Key) and CheckID(ID) then
