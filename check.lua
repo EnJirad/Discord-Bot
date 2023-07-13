@@ -30,8 +30,7 @@ local function HUB()
 end
 
 if CheckKey(Key) and CheckID(ID) then
-    print("ID and Key in whitelist")
     HUB()
 else
-    print("ID and Key not found in whitelist.")
+    game.Players.LocalPlayer:kick("ID and Key not found in whitelist.")
 end
