@@ -1,16 +1,13 @@
-local currentGameId = game.PlaceId
-local gamesUrl = "https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/games.lua"
-local xhubScriptUrl = "https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/XHUB.lua"
+repeat task.wait() until game:IsLoaded()
 
-local function RunScript(scriptUrl)
-    local script = game:HttpGet(scriptUrl)
-    loadstring(script)()
-end
+loadstring(game:HttpGet("https://raw.githubusercontent.com/1201for/V.G-Hub/main/Extras/Anti-Cheat"))()
+local A = loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/games.lua"))()
 
-local games = loadstring(game:HttpGet(gamesUrl))()
-local scriptUrl = games[currentGameId]
-if scriptUrl then
-    RunScript(scriptUrl)
-else
-    RunScript(xhubScriptUrl)
+local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport 
+queue_on_teleport[[repeat wait() until game:IsLoaded() print("ServerHoped or rejoined") loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/MainXhub.lua'))()]]
+
+for i, v in pairs(Games) do
+    if i == game.PlaceId then
+        loadstring(game:HttpGet(v))()
+    end
 end
