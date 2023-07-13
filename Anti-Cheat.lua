@@ -2,19 +2,10 @@ repeat wait() until game:IsLoaded()
 local G = getgenv and getgenv() or _G or shared
 G.Get = setmetatable({}, {__index = function(A, B) return game:GetService(B) end})
 
-for i,v in pairs(game.GetChildren(game)) do
-    G[v.ClassName] = v
-end
-
 G.Player = Players.LocalPlayer
 G.wait = task.wait
 G.spawn = task.spawn
-G.Heartbeat = RunService.Heartbeat
 G.Stepped = RunService.Stepped
-G.RenderStepped = RunService.RenderStepped
-G.Error = ScriptContext.Error
-G.MessageOut = LogService.MessageOut
-G.Kick = Player.Kick
 G.Idled = Player.Idled
 
 local Name = game.PlaceId .. ".json"
@@ -106,16 +97,6 @@ G.Save = function()
     pcall(function()
         writefile("V.G Hub//" .. Name, HttpService:JSONEncode(Settings))
     end)
-end
-
-G.Mag = function(A, B)
-    return (A.Position - B.Position).Magnitude
-end
-
-for i,v in next, Disables do 
-    for i,v in next, getconnections(v) do
-        v:Disable()
-    end
 end
 
 ScriptContext:SetTimeout(0)
