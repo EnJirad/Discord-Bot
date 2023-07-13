@@ -36,57 +36,6 @@ if isfile("V.G Hub//" .. Name) and readfile("V.G Hub//" .. Name) then
     Settings = HttpService:JSONDecode(readfile("V.G Hub//" .. Name))
 end
 
-
-local Nos = {
-    "PreloadAsync",
-    "xpcall",
-    "gcinfo",
-    "collectgarbage",
-    "FindService",
-}
-
-local Yes = {
-    "Kick",
-    "kick",
-}
-
-local OldNameCall = nil
-OldNameCall = hookmetamethod(game, "__namecall", function(...)
-    local Args = {...}
-    local A, B, C = ...
-    if table.find(Yes, getnamecallmethod()) and A == Player then
-        return
-    end
-    if table.find(Nos, getnamecallmethod()) then
-        return
-    end
-    if type(A) ~= "Instance" then
-        return OldNameCall(...)
-    end
-    return OldNameCall(...)
-end)
-
-G.GetFunction = function(A)
-    for i,v in next, getgc() do
-        if type(v) == "function" and getinfo(v).name == A and islclosure(v) then
-            return v 
-        end
-    end
-end
-
-G.DisableConnection = function(A)
-    for i,v in next, getconnections(A) do 
-        v:Disable()
-    end
-    return A
-end
-
-G.FireConnection = function(A)
-    for i,v in next, getconnections(A) do
-        v:Fire()
-    end
-end
-
 G.Save = function()
     pcall(function()
         writefile("V.G Hub//" .. Name, HttpService:JSONEncode(Settings))
