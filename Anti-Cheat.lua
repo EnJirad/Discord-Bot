@@ -90,13 +90,6 @@ G.GetFunction = function(A)
     end
 end
 
-G.Teleport = function(A, B, Toggle)
-    if Toggle and A and B then
-        A.CFrame = B
-    end
-    return A, B, Toggle
-end
-
 G.DisableConnection = function(A)
     for i,v in next, getconnections(A) do 
         v:Disable()
@@ -110,68 +103,11 @@ G.FireConnection = function(A)
     end
 end
 
-G.Tween = function(A, B, C)
-    if A and B then
-        local Time = (B.Position - A.Position).Magnitude / C 
-        local Info = TweenInfo.new(Time, Enum.EasingStyle.Linear)
-        local Tween = TweenService:Create(A, Info, {CFrame = CFrame.new(B.Position)})
-        Tween:Play()
-        if Tween.Completed then
-            Tween.Completed:Wait()
-        end
-    end
-    return A, B, C
-end
 
 G.Save = function()
     pcall(function()
         writefile("V.G Hub//" .. Name, HttpService:JSONEncode(Settings))
     end)
-end
-
-G.ServerHop = function()
-    spawn(function()
-        while wait() do
-            pcall(function()
-                local Gay = HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
-                for i,v in next, Gay.data do
-                    if v.playing < v.maxPlayers then
-                        TeleportService:TeleportToPlaceInstance(game.PlaceId, v.id, Player)
-                        break
-                    end
-                end
-            end)
-            wait(4)
-        end
-    end)
-end
-
-G.Rejoin = function()
-    return TeleportService:Teleport(game.PlaceId, Player)
-end
-
-G.NoClip = function(A)
-    return A:ChangeState(11)
-end
-G.NoClip2 = function(A)
-    for i,v in next, A:GetChildren() do
-        if v:IsA("BasePart") then
-            v.CanCollide = false 
-        end
-    end
-end
-G.SendNotification = function(Title, Text, Icon, Duration)
-    return StarterGui:SetCore("SendNotification", {Title = Title, Text = Text, Icon = Icon, Duration = Duration})
-end
-
-G.Mag = function(A, B)
-    return (A.Position - B.Position).Magnitude
-end
-
-for i,v in next, Disables do 
-    for i,v in next, getconnections(v) do
-        v:Disable()
-    end
 end
 
 ScriptContext:SetTimeout(0)
