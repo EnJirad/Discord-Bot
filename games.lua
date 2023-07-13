@@ -5,5 +5,5 @@ getgenv().Games = {
 }
 getgenv().Unknown = {
     "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest",
-   "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Legends-Re%3AWritten-Word-1",
+    "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Legends-Re%3AWritten-Word-1",
 }
