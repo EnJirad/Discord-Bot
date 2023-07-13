@@ -3,7 +3,4 @@ local games = {
     [6198225400] = "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Legends-Re%3AWritten-Word-1",
 }
 
-local unknownScripts = {
-    "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest",
-    "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Legends-Re%3AWritten-Word-1",
-}
+return games
