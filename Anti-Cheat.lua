@@ -41,6 +41,13 @@ local Yes = {
     "kick",
 }
 
+local Disables = {
+    Error,
+    MessageOut,
+    Idled
+}
+
+
 local OldNameCall = nil
 OldNameCall = hookmetamethod(game, "__namecall", function(...)
     local Args = {...}
@@ -90,6 +97,16 @@ G.Save = function()
     pcall(function()
         writefile("V.G Hub//" .. Name, HttpService:JSONEncode(Settings))
     end)
+end
+
+G.Mag = function(A, B)
+    return (A.Position - B.Position).Magnitude
+end
+
+for i,v in next, Disables do 
+    for i,v in next, getconnections(v) do
+        v:Disable()
+    end
 end
 
 ScriptContext:SetTimeout(0)
