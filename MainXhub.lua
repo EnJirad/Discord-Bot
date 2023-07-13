@@ -5,7 +5,7 @@ local A = loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Dis
 
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport 
 queue_on_teleport[[repeat wait() until game:IsLoaded() print("ServerHoped or rejoined") 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/littlegui/main/V.G-Hubs-Source'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/MainXhub.lua'))()
 ]]
 
 for i, v in pairs(Games) do
