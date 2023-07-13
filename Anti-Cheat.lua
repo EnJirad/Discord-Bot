@@ -44,5 +44,39 @@ OldNameCall = hookmetamethod(game, "__namecall", function(...)
 end)
 
 
+G.GetFunction = function(A)
+    for i,v in next, getgc() do
+        if type(v) == "function" and getinfo(v).name == A and islclosure(v) then
+            return v 
+        end
+    end
+end
+
+G.Teleport = function(A, B, Toggle)
+    if Toggle and A and B then
+        A.CFrame = B
+    end
+    return A, B, Toggle
+end
+
+G.DisableConnection = function(A)
+    for i,v in next, getconnections(A) do 
+        v:Disable()
+    end
+    return A
+end
+
+G.FireConnection = function(A)
+    for i,v in next, getconnections(A) do
+        v:Fire()
+    end
+end
+
+G.Save = function()
+    pcall(function()
+        writefile("V.G Hub//" .. Name, HttpService:JSONEncode(Settings))
+    end)
+end
+
 ScriptContext:SetTimeout(0)
 local getconstants=debug.getconstants or getconstants;local getidentity=get_thread_context or getthreadcontext or getidentity or syn.get_thread_identity;local setidentity=set_thread_context or setthreadcontext or setidentity or syn.set_thread_identity;local hookfunc=hookfunction or hookfunc or detour_function;for a,b in next,getgc()do if type(b)=="function"and islclosure(b)then local c=getconstants(b)if table.find(c,"Detected")and table.find(c,"crash")then hookfunc(b,function()return task.wait(math.huge)end)end end end
