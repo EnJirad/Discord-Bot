@@ -4,10 +4,10 @@ local TQ = getgenv().TQ
 local queue_on_teleport = queue_on_teleport or (syn and syn.queue_on_teleport)
 
 if TQ then
-    for placeId, scriptUrl in pairs(TQ) do
-        if placeId == game.PlaceId then
-            loadstring(game:HttpGet(scriptUrl))()
-        end
+    local placeId = game.PlaceId
+    local scriptUrl = TQ[placeId]
+    if scriptUrl then
+        loadstring(game:HttpGet(scriptUrl))()
     end
 end
 
