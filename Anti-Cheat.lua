@@ -50,6 +50,13 @@ local Yes = {
     "kick",
 }
 
+local Disables = {
+    Error,
+    MessageOut,
+    Idled
+}
+
+
 local OldNameCall = nil
 OldNameCall = hookmetamethod(game, "__namecall", function(...)
     local Args = {...}
@@ -83,6 +90,13 @@ G.GetFunction = function(A)
     end
 end
 
+G.Teleport = function(A, B, Toggle)
+    if Toggle and A and B then
+        A.CFrame = B
+    end
+    return A, B, Toggle
+end
+
 G.DisableConnection = function(A)
     for i,v in next, getconnections(A) do 
         v:Disable()
@@ -94,6 +108,19 @@ G.FireConnection = function(A)
     for i,v in next, getconnections(A) do
         v:Fire()
     end
+end
+
+G.Tween = function(A, B, C)
+    if A and B then
+        local Time = (B.Position - A.Position).Magnitude / C 
+        local Info = TweenInfo.new(Time, Enum.EasingStyle.Linear)
+        local Tween = TweenService:Create(A, Info, {CFrame = CFrame.new(B.Position)})
+        Tween:Play()
+        if Tween.Completed then
+            Tween.Completed:Wait()
+        end
+    end
+    return A, B, C
 end
 
 G.Save = function()
