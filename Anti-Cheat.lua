@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded()
-local G = A and A() or _G or shared
+local G = getgenv and getgenv() or _G or shared
 G.Get = setmetatable({}, {__index = function(A, B) return game:GetService(B) end})
 
 for i,v in pairs(game.GetChildren(game)) do
