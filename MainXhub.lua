@@ -1,6 +1,5 @@
 repeat task.wait() until game:IsLoaded()
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/1201for/V.G-Hub/main/Extras/Anti-Cheat"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/Anti-Cheat.lua"))()
 local A = loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/games.lua"))()
 
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport 
@@ -10,4 +9,8 @@ for i, v in pairs(Games) do
     if i == game.PlaceId then
         loadstring(game:HttpGet(v))()
     end
+end
+
+for i, v in pairs(Unknown) do
+    loadstring(game:HttpGet(v))()
 end
