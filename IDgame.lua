@@ -1,9 +1,9 @@
 idgame().Games = {
-    [2960777560] = "https://raw.githubusercontent.com/1201for/V.G-Hub/main/Games/Adopt-Me",
-    [6198225400] = "https://raw.githubusercontent.com/1201for/V.G-Hub/main/Games/Arsenal",
+    [2960777560] = "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest",
+    [6198225400] = "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Legends-Re%3AWritten-Word-1",
 }
 
 idgame().Unknown = {
-    "https://raw.githubusercontent.com/1201for/V.G-Hub-Part-3/main/War",
-    "https://raw.githubusercontent.com/1201for/V.G-Hub-Part-3/main/DBFR-Worlds",
+    "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest",
+    "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Legends-Re%3AWritten-Word-1",
 }
