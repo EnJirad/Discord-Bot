@@ -24,7 +24,7 @@ local function CheckID(ID)
 end
 
 local function HUB()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/1.TQ.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/MainXhub.lua"))()
 end
 
 if CheckKey(Key) and CheckID(ID) then
@@ -32,4 +32,5 @@ if CheckKey(Key) and CheckID(ID) then
     HUB()
 else
     print("No")
+    game.Players.LocalPlayer:Kick("ID and Key not found in whitelist.")
 end
