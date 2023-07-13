@@ -1,6 +1,6 @@
 repeat task.wait() until game:IsLoaded()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/Anti-Cheat.lua"))()
-local A = loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/games.lua"))()
+local A = loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest"))()
 
 for i, v in pairs(Games) do
     if i == game.PlaceId then
