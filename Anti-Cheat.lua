@@ -66,15 +66,6 @@ OldNameCall = hookmetamethod(game, "__namecall", function(...)
     return OldNameCall(...)
 end)
 
-
-if setfflag then
-    setfflag("HumanoidParallelRemoveNoPhysics", "False")
-    setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-end
-if setfpscap then
-    setfpscap(100)
-end
-
 G.GetFunction = function(A)
     for i,v in next, getgc() do
         if type(v) == "function" and getinfo(v).name == A and islclosure(v) then
@@ -100,10 +91,6 @@ G.Save = function()
     pcall(function()
         writefile("V.G Hub//" .. Name, HttpService:JSONEncode(Settings))
     end)
-end
-
-G.Mag = function(A, B)
-    return (A.Position - B.Position).Magnitude
 end
 
 ScriptContext:SetTimeout(0)
