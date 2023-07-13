@@ -32,5 +32,4 @@ if CheckKey(Key) and CheckID(ID) then
     HUB()
 else
     print("No")
-    game.Players.LocalPlayer:Kick("ID and Key not found in whitelist.")
 end
