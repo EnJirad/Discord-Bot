@@ -13,7 +13,3 @@ for i, v in pairs(Games) do
         loadstring(game:HttpGet(v))()
     end
 end
-
-for i, v in pairs(Unknown) do
-    loadstring(game:HttpGet(v))()
-end
