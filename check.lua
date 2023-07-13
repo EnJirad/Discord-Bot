@@ -1,6 +1,5 @@
 local HttpService = game:GetService("HttpService")
 local whitelistURL = "https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/whitelist.json"
-
 local Key = _G.Key
 local ID = _G.ID
 
@@ -24,7 +23,6 @@ local function CheckID(ID)
     return false
 end
 
-
 local function HUB()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/MainXhub.lua"))()
 end
@@ -32,7 +30,7 @@ end
 if CheckKey(Key) and CheckID(ID) then
     print("Yes")
     HUB()
-else 
+else
     print("No")
-    game.Players.LocalPlayer:Kick("ID or Key not found in whitelist.")
+    game.Players.LocalPlayer:Kick("ID and Key not found in whitelist.")
 end
