@@ -7,5 +7,6 @@ getgenv().Games = {
     [11650685514] = "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Legends-Re%3AWritten-Word-2",
     [8793520828] = "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Legends-Re%3AWritten-Raid",
     [10127152911] = "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Legends-Re%3AWritten-Raid",
+    [6198225400] = "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Legends-Re%3AWritten-Word-1",
     ----------------------------------------------------------------------------------------------------------
 }
