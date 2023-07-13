@@ -28,7 +28,7 @@ local function HUB()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/MainXhub.lua"))()
 end
 
-if CheckKey(Key) or CheckID(ID) then
+if CheckKey(Key) and CheckID(ID) then
     print("Yes")
     HUB()
 else 
