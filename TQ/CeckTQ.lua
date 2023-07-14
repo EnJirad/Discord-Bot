@@ -24,7 +24,7 @@ local function CheckID(ID)
 end
 
 local function HUB()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/1.TQ.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/TQ/1.TQ.lua'))()
 end
 
 if CheckKey(Key) and CheckID(ID) then
