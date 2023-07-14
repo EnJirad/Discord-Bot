@@ -11,5 +11,5 @@ end
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport 
 queue_on_teleport[[repeat wait() until game:IsLoaded() 
 print("ServerHoped or rejoined") 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/1.TQ.lua'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/LRW1/2.LRW1.lua'))()
 ]]
