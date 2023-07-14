@@ -1,5 +1,5 @@
 local HttpService = game:GetService("HttpService")
-local whitelistURL = "https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/UserTQ.json"
+local whitelistURL = "https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/LRW1/UserLRW1.json"
 local Key = _G.Key
 local ID = _G.ID
 
@@ -24,7 +24,7 @@ local function CheckID(ID)
 end
 
 local function HUB()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/2.LRW1.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/LRW1/2.LRW1.lua'))()
 end
 
 if CheckKey(Key) and CheckID(ID) then
