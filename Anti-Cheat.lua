@@ -35,9 +35,16 @@ G.Save = function()
     end)
 end
 
+local ServerHopping = false -- เพิ่มตัวแปรเพื่อควบคุมการ Server Hopping
+
 G.ServerHop = function()
+    if ServerHopping then -- เช็คว่ากำลัง Server Hopping อยู่หรือไม่
+        return
+    end
+
+    ServerHopping = true -- เริ่ม Server Hopping
     spawn(function()
-        while wait() do
+        while true do
             pcall(function()
                 local Servers = HttpService:JSONDecode(game:HttpGetAsync('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
                 for i,v in ipairs(Servers.data) do
@@ -50,4 +57,25 @@ G.ServerHop = function()
             task.wait(4)
         end
     end)
+end
+
+game:GetService("TeleportService").TeleportInitFailed:Connect(function(Player, TeleportResult)
+    if TeleportResult == Enum.TeleportResult.GameEnded or TeleportResult == Enum.TeleportResult.LeaveGame then
+        ServerHopping = false -- รีเซ็ตตัวแปร ServerHopping เมื่อการเปลี่ยนเซิร์ฟเวอร์สิ้นสุดลง
+    end
+end)
+
+local function OnPlayerAdded(player)
+    -- เพิ่มโค้ดที่คุณต้องการให้ทำงานเมื่อมีผู้เล่นเข้าร่วมเกมส์ในส่วนนี้
+end
+
+if game:GetService("RunService"):IsClient() then
+    -- เพิ่มโค้ดที่คุณต้องการให้ทำงานเฉพาะที่ผู้เล่นในส่วนนี้ (Client)
+    game.Players.PlayerAdded:Connect(OnPlayerAdded)
+else
+    -- เพิ่มโค้ดที่คุณต้องการให้ทำงานเฉพาะที่ผู้เล่นในส่วนนี้ (Server)
+    game.Players.PlayerAdded:Connect(OnPlayerAdded)
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        OnPlayerAdded(player)
+    end
 end
