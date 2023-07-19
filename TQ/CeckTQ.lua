@@ -13,8 +13,13 @@ local function CheckKey(Key)
 end
 
 local function HUB()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/TQ/1.TQ.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest'))()
 end
+
+game:GetService("TeleportService").TeleportInitFailed:Connect(function()
+    print("Server change detected. Running script...")
+    HUB()
+end)
 
 if CheckKey(Key) then
     print("Yes")
