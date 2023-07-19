@@ -12,29 +12,6 @@ if isfile("V.G Hub//" .. Name) then
     G.Settings = HttpService:JSONDecode(readfile("V.G Hub//" .. Name))
 end
 
-local OldNameCall = nil
-OldNameCall = hookmetamethod(game, "__namecall", function(...)
-    return OldNameCall(...)
-end)
-
-G.NoClip = function(A)
-    return A:ChangeState(11)
-end
-
-G.NoClip2 = function(A)
-    for i,v in ipairs(A:GetDescendants()) do
-        if v:IsA("BasePart") then
-            v.CanCollide = false 
-        end
-    end
-end
-
-G.Save = function()
-    pcall(function()
-        writefile("V.G Hub//" .. Name, HttpService:JSONEncode(G.Settings))
-    end)
-end
-
 local ServerHopping = false -- เพิ่มตัวแปรเพื่อควบคุมการ Server Hopping
 
 G.ServerHop = function()
@@ -64,18 +41,3 @@ game:GetService("TeleportService").TeleportInitFailed:Connect(function(Player, T
         ServerHopping = false -- รีเซ็ตตัวแปร ServerHopping เมื่อการเปลี่ยนเซิร์ฟเวอร์สิ้นสุดลง
     end
 end)
-
-local function OnPlayerAdded(player)
-    -- เพิ่มโค้ดที่คุณต้องการให้ทำงานเมื่อมีผู้เล่นเข้าร่วมเกมส์ในส่วนนี้
-end
-
-if game:GetService("RunService"):IsClient() then
-    -- เพิ่มโค้ดที่คุณต้องการให้ทำงานเฉพาะที่ผู้เล่นในส่วนนี้ (Client)
-    game.Players.PlayerAdded:Connect(OnPlayerAdded)
-else
-    -- เพิ่มโค้ดที่คุณต้องการให้ทำงานเฉพาะที่ผู้เล่นในส่วนนี้ (Server)
-    game.Players.PlayerAdded:Connect(OnPlayerAdded)
-    for _, player in ipairs(game.Players:GetPlayers()) do
-        OnPlayerAdded(player)
-    end
-end
