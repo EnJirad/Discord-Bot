@@ -6,12 +6,19 @@ G.Get = setmetatable({}, {__index = function(A, B) return game:GetService(B) end
 G.Player = Players.LocalPlayer
 G.wait = task.wait
 
+G.Teleport = function(A, B, Toggle)
+    if Toggle and A and B then
+        A.CFrame = B
+    end
+    return A, B, Toggle
+end
+
 G.NoClip = function(A)
     return A:ChangeState(11)
 end
 
 G.NoClip2 = function(A)
-    for i,v in ipairs(A:GetDescendants()) do
+    for i,v in next, A:GetDescendants() do
         if v:IsA("BasePart") then
             v.CanCollide = false 
         end
@@ -24,7 +31,8 @@ end
 
 local OldNameCall = nil
 OldNameCall = hookmetamethod(game, "__namecall", function(...)
-    local A = ...
+    local Args = {...}
+    local A, B, C = ...
     if type(A) ~= "Instance" then
         return OldNameCall(...)
     end
@@ -38,7 +46,7 @@ end
 
 G.Save = function()
     pcall(function()
-        writefile("V.G Hub//" .. game.PlaceId .. ".json", HttpService:JSONEncode(G.Settings))
+        writefile("V.G Hub//" .. Name, HttpService:JSONEncode(Settings))
     end)
 end
 
@@ -46,10 +54,10 @@ G.ServerHop = function()
     spawn(function()
         while wait(4) do
             pcall(function()
-                local Servers = game:GetService("HttpService"):JSONDecode(game:HttpGetAsync('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
+                local Servers = HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
                 for i,v in ipairs(Servers.data) do
                     if v.playing < v.maxPlayers then
-                        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, v.id, G.Player)
+                        TeleportService:TeleportToPlaceInstance(game.PlaceId, v.id, Player)
                         break
                     end
                 end
@@ -58,13 +66,13 @@ G.ServerHop = function()
     end)
 end
 
-for i,v in next, {Error, MessageOut, Idled} do 
-    for i,v in ipairs(game:GetService(v):GetConnections()) do
+for i,v in next, Disables do 
+    for i,v in next, getconnections(v) do
         v:Disable()
     end
 end
 
-_G.ScriptContext:SetTimeout(0)
+ScriptContext:SetTimeout(0)
 
 local getconstants = debug.getconstants or getconstants
 local hookfunc = hookfunction or hookfunc or detour_function
