@@ -1,36 +1,22 @@
--- เมื่อมีการย้ายเซิร์ฟเวอร์สำเร็จให้ใช้ฟังก์ชันนี้เพื่อเช็คและรันสคริปต์ที่ต้องการ
-function onServerSwitched()
-    -- ตรวจสอบเงื่อนไขสำหรับ map().TQ
-    if game.GameId == 2960777560 or game.GameId == 2978518061 then
-        loadScript(map().TQ[game.GameId])
-    end
+repeat
+    task.wait()
+until game:IsLoaded()
 
-    -- ตรวจสอบเงื่อนไขสำหรับ map().LRW1
-    if game.GameId == 7816227995 then
-        loadScript(map().LRW1[game.GameId])
-    end
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/Anti-Cheat.lua"))()
+local A = loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/games.lua"))()
 
-    -- ตรวจสอบเงื่อนไขสำหรับ map().LRW2
-    if game.GameId == 11650685514 then
-        loadScript(map().LRW2[game.GameId])
-    end
-
-    -- ตรวจสอบเงื่อนไขสำหรับ map().LRWRaid
-    if game.GameId == 8793520828 or game.GameId == 10127152911 then
-        loadScript(map().LRWRaid[game.GameId])
+for i, v in pairs(map().TQ) do
+    if i == game.PlaceId then
+        loadstring(game:HttpGet(v))()
     end
 end
 
--- ฟังก์ชันสำหรับโหลดและรันสคริปต์
-function loadScript(scriptUrl)
-    -- สร้างตัวแปรเก็บสคริปต์
-    local script = Instance.new("Script")
-    script.Name = "CustomScript"
-    script.Source = game:HttpGet(scriptUrl)
-    
-    -- เรียกใช้งานสคริปต์
-    script.Parent = game:GetService("ServerScriptService")
-end
+local queue_on_teleport = queue_on_teleport
 
--- เช็คและรันสคริปต์เมื่อมีการย้ายเซิร์ฟเวอร์
-onServerSwitched()
+queue_on_teleport([[
+    repeat
+        wait()
+    until game:IsLoaded()
+    print("Server Hopped or rejoined")
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/TQ/1.TQ.lua'))()
+]])
