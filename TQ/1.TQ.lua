@@ -8,8 +8,7 @@ for i, v in pairs(TQ) do
     end
 end
 
-local queue_on_teleport = queue_on_teleport
-
+local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport 
 queue_on_teleport[[repeat wait() until game:IsLoaded() 
 print("ServerHoped or rejoined") 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/TQ/1.TQ.lua'))()
