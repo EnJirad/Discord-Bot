@@ -13,7 +13,7 @@ local function CheckKey(Key)
 end
 
 local function HUB()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/LRWRaid/4.LRWRaid.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Legends-Re%3AWritten-Raid'))()
 end
 
 if CheckKey(Key) then
