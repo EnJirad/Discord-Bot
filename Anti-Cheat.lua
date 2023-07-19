@@ -1,47 +1,93 @@
 repeat wait() until game:IsLoaded()
-
 local G = getgenv and getgenv() or _G or shared
 G.Get = setmetatable({}, {__index = function(A, B) return game:GetService(B) end})
 
+for i,v in pairs(game.GetChildren(game)) do
+    G[v.ClassName] = v
+end
+
 G.Player = Players.LocalPlayer
 G.wait = task.wait
+G.spawn = task.spawn
+G.Heartbeat = RunService.Heartbeat
+G.Stepped = RunService.Stepped
+G.RenderStepped = RunService.RenderStepped
+G.Error = ScriptContext.Error
+G.MessageOut = LogService.MessageOut
+G.Kick = Player.Kick
+G.Idled = Player.Idled
 
-G.Teleport = function(A, B, Toggle)
-    if Toggle and A and B then
-        A.CFrame = B
+local Name = game.PlaceId .. ".json"
+local Des = {}
+if makefolder and not isfile("V.G Hub") then
+    makefolder("V.G Hub")
+end
+
+G.Settings = {}
+local Pcall = pcall(function()
+    if isfile("V.G Hub//" .. Name) then
+        readfile("V.G Hub//" .. Name)
+    else
+        writefile("V.G Hub//" .. Name, HttpService:JSONEncode(Des))
     end
-    return A, B, Toggle
+end)
+
+if isfile("V.G Hub//" .. Name) and readfile("V.G Hub//" .. Name) then
+    Settings = HttpService:JSONDecode(readfile("V.G Hub//" .. Name))
 end
 
-G.NoClip = function(A)
-    return A:ChangeState(11)
-end
 
-G.NoClip2 = function(A)
-    for i,v in next, A:GetDescendants() do
-        if v:IsA("BasePart") then
-            v.CanCollide = false 
-        end
-    end
-end
+local Nos = {
+    "PreloadAsync",
+    "xpcall",
+    "gcinfo",
+    "collectgarbage",
+    "FindService",
+}
 
-for i,v in ipairs({"Error", "MessageOut", "Idled"}) do
-    G[v] = nil
-end
+local Yes = {
+    "Kick",
+    "kick",
+}
+
+local Disables = {
+    Error,
+    MessageOut,
+    Idled
+}
+
 
 local OldNameCall = nil
 OldNameCall = hookmetamethod(game, "__namecall", function(...)
     local Args = {...}
     local A, B, C = ...
+    if table.find(Yes, getnamecallmethod()) and A == Player then
+        return
+    end
+    if table.find(Nos, getnamecallmethod()) then
+        return
+    end
     if type(A) ~= "Instance" then
         return OldNameCall(...)
     end
     return OldNameCall(...)
 end)
 
+
 if setfflag then
     setfflag("HumanoidParallelRemoveNoPhysics", "False")
     setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+end
+if setfpscap then
+    setfpscap(100)
+end
+
+G.GetFunction = function(A)
+    for i,v in next, getgc() do
+        if type(v) == "function" and getinfo(v).name == A and islclosure(v) then
+            return v 
+        end
+    end
 end
 
 G.Save = function()
@@ -50,40 +96,24 @@ G.Save = function()
     end)
 end
 
-G.ServerHop = function()
-    spawn(function()
-        while wait(4) do
-            pcall(function()
-                local Servers = HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
-                for i,v in ipairs(Servers.data) do
-                    if v.playing < v.maxPlayers then
-                        TeleportService:TeleportToPlaceInstance(game.PlaceId, v.id, Player)
-                        break
-                    end
-                end
-            end)
-        end
-    end)
+G.Rejoin = function()
+    return TeleportService:Teleport(game.PlaceId, Player)
 end
 
-for i,v in next, Disables do 
-    for i,v in next, getconnections(v) do
-        v:Disable()
-    end
+G.NoClip = function(A)
+    return A:ChangeState(11)
 end
-
-ScriptContext:SetTimeout(0)
-
-local getconstants = debug.getconstants or getconstants
-local hookfunc = hookfunction or hookfunc or detour_function
-
-for a,b in next,getgc() do
-    if type(b) == "function" and islclosure(b) then
-        local c = getconstants(b)
-        if table.find(c, "Detected") and table.find(c, "crash") then
-            hookfunc(b, function()
-                return task.wait(math.huge)
-            end)
+G.NoClip2 = function(A)
+    for i,v in next, A:GetChildren() do
+        if v:IsA("BasePart") then
+            v.CanCollide = false 
         end
     end
+end
+G.SendNotification = function(Title, Text, Icon, Duration)
+    return StarterGui:SetCore("SendNotification", {Title = Title, Text = Text, Icon = Icon, Duration = Duration})
+end
+
+G.Mag = function(A, B)
+    return (A.Position - B.Position).Magnitude
 end
