@@ -1,15 +1,23 @@
-repeat task.wait() until game:IsLoaded()
-loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/Anti-Cheat.lua"))()
-local A = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/games.lua"))()
+local process1 = spawn(function()
+    repeat wait() until game:IsLoaded()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/Anti-Cheat.lua"))()
+end)
 
-for i, v in pairs(TQ) do
-    if i == game.PlaceId then
-        loadstring(game:HttpGetAsync(v))()
+local process2 = spawn(function()
+    repeat wait() until game:IsLoaded()
+    local A = loadstring(game:HttpGet("https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/games.lua"))()
+    for i, v in pairs(getgenv().TQ) do
+        if i == game.PlaceId then
+            loadstring(game:HttpGet(v))()
+        end
     end
-end
+end)
 
-local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport 
-queue_on_teleport([[repeat wait() until game:IsLoaded() 
-print("ServerHopped or rejoined") 
-loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/TQ/1.TQ.lua'))()
-]])
+local process3 = spawn(function()
+    repeat wait() until game:IsLoaded()
+    local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport 
+    queue_on_teleport([[repeat wait() until game:IsLoaded() 
+        print("ServerHoped or rejoined") 
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/TQ/1.TQ.lua'))()
+    ]])
+end)
