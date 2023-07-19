@@ -1,8 +1,9 @@
 repeat wait() until game:IsLoaded()
+
 local G = getgenv and getgenv() or _G or shared
 G.Get = setmetatable({}, {__index = function(A, B) return game:GetService(B) end})
 
-for i,v in pairs(game.GetChildren(game)) do
+for i,v in pairs(game:GetChildren()) do
     G[v.ClassName] = v
 end
 
@@ -33,9 +34,8 @@ local Pcall = pcall(function()
 end)
 
 if isfile("V.G Hub//" .. Name) and readfile("V.G Hub//" .. Name) then
-    Settings = HttpService:JSONDecode(readfile("V.G Hub//" .. Name))
+    G.Settings = HttpService:JSONDecode(readfile("V.G Hub//" .. Name))
 end
-
 
 local Nos = {
     "PreloadAsync",
@@ -51,17 +51,16 @@ local Yes = {
 }
 
 local Disables = {
-    Error,
-    MessageOut,
-    Idled
+    G.Error,
+    G.MessageOut,
+    G.Idled
 }
-
 
 local OldNameCall = nil
 OldNameCall = hookmetamethod(game, "__namecall", function(...)
     local Args = {...}
     local A, B, C = ...
-    if table.find(Yes, getnamecallmethod()) and A == Player then
+    if table.find(Yes, getnamecallmethod()) and A == G.Player then
         return
     end
     if table.find(Nos, getnamecallmethod()) then
@@ -72,7 +71,6 @@ OldNameCall = hookmetamethod(game, "__namecall", function(...)
     end
     return OldNameCall(...)
 end)
-
 
 if setfflag then
     setfflag("HumanoidParallelRemoveNoPhysics", "False")
@@ -125,7 +123,7 @@ end
 
 G.Save = function()
     pcall(function()
-        writefile("V.G Hub//" .. Name, HttpService:JSONEncode(Settings))
+        writefile("V.G Hub//" .. Name, HttpService:JSONEncode(G.Settings))
     end)
 end
 
@@ -133,8 +131,8 @@ G.ServerHop = function()
     spawn(function()
         while wait() do
             pcall(function()
-                local Gay = HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
-                for i,v in next, Gay.data do
+                local Servers = HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
+                for i,v in next, Servers.data do
                     if v.playing < v.maxPlayers then
                         TeleportService:TeleportToPlaceInstance(game.PlaceId, v.id, Player)
                         break
@@ -153,6 +151,7 @@ end
 G.NoClip = function(A)
     return A:ChangeState(11)
 end
+
 G.NoClip2 = function(A)
     for i,v in next, A:GetChildren() do
         if v:IsA("BasePart") then
@@ -160,6 +159,7 @@ G.NoClip2 = function(A)
         end
     end
 end
+
 G.SendNotification = function(Title, Text, Icon, Duration)
     return StarterGui:SetCore("SendNotification", {Title = Title, Text = Text, Icon = Icon, Duration = Duration})
 end
@@ -175,4 +175,19 @@ for i,v in next, Disables do
 end
 
 ScriptContext:SetTimeout(0)
-local getconstants=debug.getconstants or getconstants;local getidentity=get_thread_context or getthreadcontext or getidentity or syn.get_thread_identity;local setidentity=set_thread_context or setthreadcontext or setidentity or syn.set_thread_identity;local hookfunc=hookfunction or hookfunc or detour_function;for a,b in next,getgc()do if type(b)=="function"and islclosure(b)then local c=getconstants(b)if table.find(c,"Detected")and table.find(c,"crash")then hookfunc(b,function()return task.wait(math.huge)end)end end end
+
+local getconstants = debug.getconstants or getconstants
+local getidentity = get_thread_context or getthreadcontext or getidentity or syn.get_thread_identity
+local setidentity = set_thread_context or setthreadcontext or setidentity or syn.set_thread_identity
+local hookfunc = hookfunction or hookfunc or detour_function
+
+for a,b in next, getgc() do
+    if type(b) == "function" and islclosure(b) then
+        local c = getconstants(b)
+        if table.find(c, "Detected") and table.find(c, "crash") then
+            hookfunc(b, function()
+                return task.wait(math.huge)
+            end)
+        end
+    end
+end
