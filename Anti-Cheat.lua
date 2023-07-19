@@ -22,7 +22,7 @@ G.NoClip = function(A)
 end
 
 G.NoClip2 = function(A)
-    for i,v in next, A:GetChildren() do
+    for i,v in ipairs(A:GetDescendants()) do
         if v:IsA("BasePart") then
             v.CanCollide = false 
         end
@@ -39,15 +39,15 @@ G.ServerHop = function()
     spawn(function()
         while wait() do
             pcall(function()
-                local Servers = HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
-                for i,v in next, Servers.data do
+                local Servers = HttpService:JSONDecode(game:HttpGetAsync('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
+                for i,v in ipairs(Servers.data) do
                     if v.playing < v.maxPlayers then
                         TeleportService:TeleportToPlaceInstance(game.PlaceId, v.id, Player)
                         break
                     end
                 end
             end)
-            wait(4)
+            task.wait(4)
         end
     end)
 end
