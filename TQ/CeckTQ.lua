@@ -1,7 +1,6 @@
 local HttpService = game:GetService("HttpService")
 local whitelistURL = "https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/TQ/UserTQ.json"
 local Key = _G.Key
-local ID = _G.ID
 
 local function CheckKey(Key)
     local whitelist = HttpService:JSONDecode(game:HttpGet(whitelistURL))
@@ -13,21 +12,11 @@ local function CheckKey(Key)
     return false
 end
 
-local function CheckID(ID)
-    local whitelist = HttpService:JSONDecode(game:HttpGet(whitelistURL))
-    for _, user in pairs(whitelist.users) do
-        if ID == user.ID then
-            return true
-        end
-    end
-    return false
-end
-
 local function HUB()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/TQ/1.TQ.lua'))()
 end
 
-if CheckKey(Key) and CheckID(ID) then
+if CheckKey(Key) then
     print("Yes")
     HUB()
 else
