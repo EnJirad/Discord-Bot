@@ -1,5 +1,5 @@
 local HttpService = game:GetService("HttpService")
-local whitelistURL = "https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/TQ/UserTQ.json"
+local whitelistURL = "https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/tq/usertq.json"
 local Key = _G.Key
 
 local function CheckKey(Key)
