@@ -1,8 +1,9 @@
+local HttpService = game:GetService("HttpService")
 local whitelistURL = "https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/tq/usertq.json"
 local Key = _G.Key
 
 local function CheckKey(Key)
-    local whitelist = game:HttpGet(whitelistURL)
+    local whitelist = HttpService:JSONDecode(game:HttpGet(whitelistURL))
     for _, user in pairs(whitelist.users) do
         if Key == user.Key and string.len(Key) == 16 then
             return true
