@@ -33,3 +33,5 @@ if CheckKey() then
 else
     print("No")
 end
+local jsonText = game:HttpGet(whitelistURL)
+print(jsonText) -- Add this line for debugging purposes
