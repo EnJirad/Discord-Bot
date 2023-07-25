@@ -8,7 +8,7 @@ local function CheckKey(Key)
     end)
 
     if success and type(whitelist) == "table" and whitelist.users then
-        for _, user in pairs(whitelist.users) do
+        for _, user in ipairs(whitelist.users) do
             if Key == user.Key and string.len(Key) == 16 then
                 return true
             end
