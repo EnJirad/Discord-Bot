@@ -11,7 +11,7 @@ local function CheckKey(Key)
     end
     return false
 end
-
+print("Yes")
 local function HUB()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest'))()
 end
