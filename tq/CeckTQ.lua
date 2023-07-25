@@ -17,14 +17,14 @@ local function CheckKey(Key)
     return false
 end
 
-local function HUB(Key)
+local function HUB()
     local scriptURL = 'https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest'
     local scriptContent = game:HttpGet(scriptURL)
     loadstring(scriptContent)()
 end
 
 if CheckKey(Key) then
-    HUB(Key)
+    HUB()
     print("Yes")
 else
     print("No")
