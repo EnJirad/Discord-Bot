@@ -4,7 +4,7 @@ local Key = _G.Key
 
 local function CheckKey(Key)
     local whitelist = HttpService:JSONDecode(game:HttpGet(whitelistURL))
-    for _, user in pairs(whitelist.users) do
+    for _, user in pairs(userlrw1.users) do
         if Key == user.Key and string.len(Key) == 16 then
             return true
         end
