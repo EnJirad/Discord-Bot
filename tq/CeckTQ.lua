@@ -22,8 +22,8 @@ local function HUB()
 end
 
 if CheckKey(Key) then
-    print("Yes")
     HUB()
+    print("Yes")
 else
     print("No")
 end
