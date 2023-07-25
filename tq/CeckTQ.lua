@@ -1,11 +1,10 @@
 local HttpService = game:GetService("HttpService")
 local whitelistURL = "https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/tq/usertq.json"
-local Key = _G.Key
 
-local function CheckKey(Key)
+local function CheckKey()
     local whitelist = HttpService:JSONDecode(game:HttpGet(whitelistURL))
     for _, user in pairs(whitelist.users) do
-        if Key == user.Key and string.len(Key) == 16 then
+        if _G.Key == user.Key and string.len(_G.Key) == 16 then
             return true
         end
     end
@@ -16,7 +15,7 @@ local function HUB()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest'))()
 end
 
-if CheckKey(Key) then
+if CheckKey() then
     print("Yes")
     HUB()
 else
