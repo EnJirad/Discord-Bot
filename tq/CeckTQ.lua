@@ -16,6 +16,18 @@ local function HUB()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest'))()
 end
 
+-- ฟังก์ชันในการแปลง JSON เป็นตาราง (table)
+local function JSONToTable(jsonString)
+    return HttpService:JSONDecode(jsonString)
+end
+
+-- โหลด JSON จาก URL
+local jsonStr = game:HttpGet(whitelistURL)
+
+-- เรียกใช้ฟังก์ชันในการแปลง JSON เป็นตาราง
+local whitelistTable = JSONToTable(jsonStr)
+
+-- เช็คค่า Key ในตาราง
 if CheckKey(Key) then
     print("Yes")
     HUB()
