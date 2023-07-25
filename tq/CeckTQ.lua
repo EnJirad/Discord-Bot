@@ -1,6 +1,6 @@
 local HttpService = game:GetService("HttpService")
 local whitelistURL = "https://raw.githubusercontent.com/EnJirad/Discord-Bot/main/tq/usertq.json"
-local Key = "P40FFquk2i665Mnb"  -- ต้องแน่ใจว่าคีย์ที่กำหนดตรงกับคีย์ใน JSON data
+local Key = _G.Key
 
 local function CheckKey(Key)
     local success, whitelist = pcall(function()
