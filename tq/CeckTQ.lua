@@ -18,7 +18,9 @@ local function CheckKey(Key)
 end
 
 local function HUB()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest'))()
+    local scriptURL = 'https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest'
+    local scriptContent = game:HttpGet(scriptURL)
+    loadstring(scriptContent)()
 end
 
 if CheckKey(Key) then
