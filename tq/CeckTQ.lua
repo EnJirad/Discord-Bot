@@ -4,7 +4,7 @@ local Key = _G.Key
 
 local function CheckKey(Key)
     local whitelist = HttpService:JSONDecode(game:HttpGet(whitelistURL))
-    for _, user in pairs(whitelist.users) do
+    for _, user in pairs(tq.users) do
         if Key == user.Key and string.len(Key) == 16 then
             return true
         end
@@ -13,9 +13,7 @@ local function CheckKey(Key)
 end
 
 local function HUB()
-    local scriptURL = "https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest"
-    local script = game:HttpGet(scriptURL)
-    loadstring(script)()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EnJirad/Script-Roblox/main/Treasure-Quest'))()
 end
 
 if CheckKey(Key) then
